@@ -19,13 +19,13 @@ return new class extends Migration
                   ->onDelete('cascade');
         });
 
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropForeign(['doctor_id']);
-            $table->foreign('doctor_id')
-                  ->references('id')
-                  ->on('doctors')
-                  ->onDelete('cascade');
-        });
+        if (Schema::hasTable('reservations')) {
+            Schema::table('reservations', function (Blueprint $table) {
+                $table->dropForeign(['doctor_id']);
+                $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            });
+        }
+        
     }
 
     /**
@@ -38,9 +38,12 @@ return new class extends Migration
             $table->foreign('doctor_id')->references('id')->on('doctors');
         });
 
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropForeign(['doctor_id']);
-            $table->foreign('doctor_id')->references('id')->on('doctors');
-        });
+        if (Schema::hasTable('reservations')) {
+            Schema::table('reservations', function (Blueprint $table) {
+                $table->dropForeign(['doctor_id']);
+                $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            });
+        }
+        
     }
 };

@@ -14,6 +14,9 @@ use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Notifications\NewAppointmentNotification;
 use Illuminate\Support\Facades\Notification;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class DoctorController extends Controller
 {
@@ -167,6 +170,15 @@ class DoctorController extends Controller
                            $admin->notify(new NewAppointmentNotification($reservation));
                          }
 
+                  // Send Email
+                    $user = Auth::user();
+                    $data = [
+                        'name' => $user->name,
+                        'message' => 'Your reservation for Dr.' . $doctor->name . 'has been registered ,  Please wait for a reserve confirmation message',
+                    ];
+
+                    Mail::to($user->email)->send(new WelcomeMail($data));           
+
             return redirect()->route('reservation')->with('success', 'Reservation created successfully!');
 
     }
@@ -186,14 +198,23 @@ class DoctorController extends Controller
     return view('reservation', compact('reservations'));
 }
 
-public function confirm($id)
-{
+public function confirm($id){
     $reservation = Reservation::findOrFail($id);
 
     // فقط admin يقدر يعمل confirm
     if(auth()->user()->is_admin) {
         $reservation->status = 'confirmed';
         $reservation->save();
+
+        $doctor = $reservation->doctor;
+                  // Send Email
+                  $user = $reservation->user;
+                  $data = [
+                      'name' => $user->name,
+                      'message' => 'Your reservation with Dr.' . $doctor->name . ' has been confirmed , wait us to connect you soon .',
+                          ];
+
+                  Mail::to($user->email)->send(new WelcomeMail($data));           
 
         return redirect()->back()->with('success', 'Reservation confirmed successfully!');
     }
@@ -205,6 +226,16 @@ public function cancel($id)
     $reservation = Reservation::findOrFail($id);
     $reservation->status = 'cancelled';
     $reservation->save();
+
+    $doctor = $reservation->doctor;
+    // Send Email
+    $user = $reservation->user;
+    $data = [
+        'name' => $user->name,
+        'message' => 'Your reservation with Dr. ' . $doctor->name . ' has been cancelled ,Please schedule another appointment.        .',
+            ];
+
+    Mail::to($user->email)->send(new WelcomeMail($data));     
 
     return redirect()->back()->with('success', 'Reservation cancelled successfully.');
 }
