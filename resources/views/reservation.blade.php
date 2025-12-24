@@ -55,7 +55,10 @@
                     
                     
                     @if(Auth::check() && Auth::user()->is_admin)
-                    <td>{{ $reservation->user->name ?? 'N/A' }}</td>
+                    <td>
+                        <a href="{{ route('reservation',  ['user_id' =>  $reservation->user->id]) }}" 
+                            > 
+                        {{ $reservation->user->name ?? 'N/A' }}</a></td>
                     <td>
                         @if($reservation->status === 'pending')
                         {{-- Confirm Button --}}

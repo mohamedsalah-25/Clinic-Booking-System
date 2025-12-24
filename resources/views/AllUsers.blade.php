@@ -33,13 +33,15 @@
             @forelse($users as $user)
                 <tr>
                     <td>
-                        {{ $user->name  }}
+                        <a href="{{ route('reservation',  ['user_id' => $user->id]) }}" 
+                            >{{ $user->name }}
+                        </a>
                     </td>
                     <td>
                         {{ $user->phone  }}
                     </td>
                     <td>
-                        <form action="" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                        <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>

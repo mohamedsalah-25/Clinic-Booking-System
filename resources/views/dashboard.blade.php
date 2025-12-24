@@ -154,16 +154,14 @@
               <li class="nav-item dropdown d-none d-sm-flex">
                 <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown">
                   <i class="mdi mdi-email-outline"></i>
-                  <span class="count count-varient2">1</span>
+                  <span class="count count-varient2">0</span>
                 </a>
                 <div class="dropdown-menu navbar-dropdown navbar-dropdown-large preview-list" aria-labelledby="messageDropdown">
                   <h6 class="p-3 mb-0">Messages</h6>
                   <a class="dropdown-item preview-item">
                     <div class="preview-item-content flex-grow">
-                      <span class="badge badge-pill badge-success">Request</span>
-                      <p class="text-small text-muted ellipsis mb-0"> Suport needed for user123 </p>
+                    
                     </div>
-                    <p class="text-small text-muted align-self-start"> 4:10 PM </p>
                   </a>
                   <h6 class="p-3 mb-0">See all activity</h6>
                 </div>
@@ -282,10 +280,9 @@
                           <tr>
                             <td>
                               <div class="d-flex align-items-center">
-                                <img src="assets/images/faces/face16.jpg" alt="image" />
                                 <div class="table-user-name ml-3">
                                   <p class="mb-0 font-weight-medium"> {{ $reservation->user->name  }} </p>
-                                  <small>Payment on process</small>
+                                  
                                 </div>
                               </div>
                             </td>
@@ -316,11 +313,10 @@
                       <div class="col-12 col-sm-7">
                         @foreach($latestUsers as $user)
                         <div class="row">
-                          <div class="col-4 col-md-4">
-                            <img class="customer-img" src="assets/images/faces/face22.jpg" alt="" />
-                          </div>
                           <div class="col-8 col-md-8 p-sm-0">
-                            <h6 class="mb-0">{{$user->name}}</h6>
+                            <h6 class="mb-0">
+                            <a href="{{ route('reservation',  ['user_id' => $user->id]) }}" 
+                              >{{ $user->name }}</a></h6>
                             <p class="text-muted font-12"> {{ $user->created_at->format('h:i A') }} 
                               — {{ $user->created_at->diffForHumans() }}
                             </p>

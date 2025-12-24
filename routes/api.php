@@ -10,5 +10,12 @@ Route::get('/user', function (Request $request) {
 
 
 
-
+Route::middleware('auth:sanctum')->group(function () {
 Route::apiResource('appointments', AppointmentController::class);
+});
+
+Route::post('register', [AppointmentController::class, 'register']);
+Route::post('login', [AppointmentController::class, 'login']);
+Route::middleware('auth:sanctum')->get('user', [AppointmentController::class, 'user']);
+Route::post('logout', [AppointmentController::class, 'logout'])->middleware('auth:sanctum');
+

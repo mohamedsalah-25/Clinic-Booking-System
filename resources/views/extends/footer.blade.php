@@ -11,7 +11,7 @@
 
                         <div class="contact-info">
                              <p><i class="fa fa-phone"></i> 010-070-0170</p>
-                             <p><i class="fa fa-envelope-o"></i> <a href="#">Dentist_clinic@company.com</a></p>
+                             <p><i class="fa fa-envelope-o"></i> <a href="/">Dentist_clinic@company.com</a></p>
                         </div>
                    </div>
               </div>
@@ -24,9 +24,9 @@
                         </div> 
 
                         <ul class="social-icon">
-                             <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                             <li><a href="#" class="fa fa-twitter"></a></li>
-                             <li><a href="#" class="fa fa-instagram"></a></li>
+                             <li><a href="/" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                             <li><a href="/" class="fa fa-twitter"></a></li>
+                             <li><a href="/" class="fa fa-instagram"></a></li>
                         </ul>
                    </div>
               </div>
@@ -41,8 +41,8 @@
                    </div>
                    <div class="col-md-6 col-sm-6">
                         <div class="footer-link"> 
-                             <a href="#">Insurance Policy</a>
-                             <a href="#">Careers</a>
+                             <a href="/">Insurance Policy</a>
+                             <a href="/">Careers</a>
                         </div>
                    </div>
                    <div class="col-md-2 col-sm-2 text-align-center">

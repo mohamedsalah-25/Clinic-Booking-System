@@ -16,6 +16,16 @@
                        </div>
                         <p style="margin-bottom: 40px;">We have a group of the best and most qualified dentists in Alexandria Governorate who strive to provide the patient with the best possible care.
                         </p>
+                        @if( Auth::check() && Auth::user()->is_admin)
+                        <form id="appointment-form" role="form"
+                        action="{{ isset($doctor) ? route('makeAppointment', ['doctor' => $doctor->id]) : route('reservation') }}"
+                        method="GET">
+                  
+                         @csrf
+                             <div class="col-md-12 col-sm-12">               
+                                  <button type="submit" class="form-control" id="cf-submit" name="submit">Make an appointment</button>
+                                </div>
+                        @else
                         <form id="appointment-form" role="form"
                         action="{{ isset($doctor) ? route('makeAppointment', ['doctor' => $doctor->id]) : route('makeAppointment') }}"
                         method="GET">
@@ -24,6 +34,7 @@
                              <div class="col-md-12 col-sm-12">               
                                   <button type="submit" class="form-control" id="cf-submit" name="submit">Make an appointment</button>
                                 </div>
+                         @endif       
                         </div>
                   </form>
               </div>

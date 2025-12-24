@@ -10,7 +10,7 @@
               <div class="col-md-8 col-sm-7 text-align-right">
                    <span class="phone-icon"><i class="fa fa-phone"></i>  010-070-0170</span>
                    <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6 Days a Week (Fri OFF)</span>
-                   <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">Dentist_clinic@company.com</a></span>
+                   <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="/">Dentist_clinic@company.com</a></span>
               </div>
 
          </div>
@@ -81,7 +81,11 @@
                     <a href="{{ route('register') }}">Register</a>
                     @endauth
                     </li>
+                    @if( Auth::check() && Auth::user()->is_admin)
+                   <li class="appointment-btn"><a href="{{route('reservation')}}">Make an appointment</a></li>
+                   @else
                    <li class="appointment-btn"><a href="{{route('makeAppointment')}}">Make an appointment</a></li>
+                    @endif
               </ul>
          </div>
 

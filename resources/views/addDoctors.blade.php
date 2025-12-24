@@ -75,7 +75,7 @@
                                         value="{{ $appointment->time_end }}" required />
                                 </div>
             
-                                <button type="button" class="remove-appointment mt-3 bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+                                <button type="button" class="remove-appointment mt-3 bg-red-500 text-dark px-3 py-1 rounded">Remove</button>
                             </div>
                         @endforeach
                     @else
@@ -108,7 +108,7 @@
                 </div>
             
                 {{-- Add more --}}
-                <button type="button" id="add-appointment" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded">
+                <button type="button" id="add-appointment" class="mt-3 bg-blue-500 text-dark px-4 py-2 rounded">
                     + Add More Appointments
                 </button>
             </div>
@@ -147,7 +147,7 @@
                             <input class="block mt-1 w-full" type="time" name="appointments[${index}][time_end]" required />
                         </div>
                 
-                        <button type="button" class="remove-appointment mt-3 bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+                        <button type="button" class="remove-appointment mt-3 bg-red-500 text-dark px-3 py-1 rounded">Remove</button>
                     `;
                     wrapper.appendChild(newItem);
                     index++;
